@@ -1,0 +1,377 @@
+openapi: 3.0.3
+info:
+  title: E-Commerce APIs
+  version: 0.0.1
+  description: |-
+    ## Overview
+    A documentation for a NestJS backend serviceo Open APIs. This documentation can be read with a [YAML editor](https://editor.swagger.io/)
+    
+    ## Status Codes 
+    All HTTP responses will have HTTP status code and custom status code for standardization and debugging of the application. 
+    
+    ### Guide for HTTP Status Codes
+    | HTTP Status Code | Description   |
+      |-----------------:|---------------|
+      | 1XX              | Informational |
+      | 2XX              | Successful    |
+      | 3XX              | Redirection   |
+      | 4XX              | Client error  |
+      | 5XX              | Server error  |
+    
+    ## ChangeLog
+    0.0.1 [2023-10-24]
+    ----------------------------
+    - E-commerce API documentation
+    
+
+
+  termsOfService: https://joinsimon.life/privacy-policy/
+  contact:
+    name: Enquiries
+    email: me@joinsimon.life
+  license:
+    name: MIT License
+    url: https://joinsimon.life/license
+  
+  
+servers:
+  - url: https://dev.joinsimon.life
+tags:
+  - name: E-commerce
+    description: E-commerce Application
+  - name: Category
+    description: Product categories
+  - name: Products
+    description: Products
+    
+paths:
+  /api/v1/ecommerce/categories:
+    post:
+      tags:
+        - Category
+      summary: Create Category
+      description: Create category
+      operationId: postCategory
+      security:
+        - all_auth:
+            - write
+            - read
+      requestBody:
+        description: Create category 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Categories'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Categories'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Categories'
+        required: true
+        
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Access token'
+          required: true
+          schema:
+            type: string
+            example: 'Bearer <access token>'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoriesResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http401'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http500'
+    get:
+      tags:
+        - Category
+      summary: Get product categories
+      description: Get product categories 
+      operationId: getProductCategories
+      security:
+        - all_auth:
+            - write
+            - read
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Access token'
+          required: true
+          schema:
+            type: string
+            example: 'Bearer <access token>'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categories'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http401'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http500'
+
+  /api/v1/ecommerce/products:
+    post:
+      tags:
+        - Products
+      summary: Create Product
+      description: Create Product
+      operationId: postProduct
+      security:
+        - all_auth:
+            - write
+            - read
+      requestBody:
+        description: Create product 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Products'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Products'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Products'
+        required: true
+        
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Access token'
+          required: true
+          schema:
+            type: string
+            example: 'Bearer <access token>'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http401'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http500'
+    get:
+      tags:
+        - Products
+      summary: Get product 
+      description: Get product  
+      operationId: getProducts
+      security:
+        - all_auth:
+            - write
+            - read
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Access token'
+          required: true
+          schema:
+            type: string
+            example: 'Bearer <access token>'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateProducts'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http401'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Http500'                
+
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'Name'
+          example: 'Electronics'
+        price:
+          type: number
+          description: 'Price'
+          example: 'Price'
+        status:
+          type: string
+          description: 'Status'
+          example: 'Active'
+        quantity:
+          type: number
+          description: 'Quantity'
+          example: 'Quantity'
+        category_id:
+          type: number
+          description: 'Category'
+          example: 'Electronics'
+    CreateProducts:
+      allOf:
+        - $ref: '#/components/schemas/Products'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              description: 'ID'
+              example: '550e8400-e29b-41d4-de23-446655440000'
+          
+    ProductsResponse:
+      allOf:
+        - $ref: '#/components/schemas/Http200'
+        - type: object
+          required:
+            - data
+          properties: 
+            data:
+              type: object
+              allOf:
+                - $ref: '#/components/schemas/CreateProducts'
+    Categories:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'Name'
+          example: 'Electronics'
+        parent_id:
+          type: string
+          description: 'Parent ID'
+          example: 'Parent ID for the category'
+
+    CreateCategories:
+      allOf:
+        - $ref: '#/components/schemas/Categories'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              description: 'ID'
+              example: '550e8400-e29b-41d4-de23-446655440000'
+          
+    CategoriesResponse:
+      allOf:
+        - $ref: '#/components/schemas/Http200'
+        - type: object
+          required:
+            - data
+          properties: 
+            data:
+              type: object
+              allOf:
+                - $ref: '#/components/schemas/CreateCategories'
+   
+    Http200:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          example: 10
+        message: 
+          type: string
+          example: 'A custom successful message'
+    Http400:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          example: 12
+        message: 
+          type: string
+          example: Bad request
+    Http401:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          example: 13
+        message: 
+          type: string
+          example: Unauthorized
+    Http500:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          example: 11
+        message: 
+          type: string
+          example: Server error
+
+  securitySchemes:
+    all_auth:
+      type: apiKey
+      name: Authorization
+      in: header

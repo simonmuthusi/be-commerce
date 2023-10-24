@@ -7,6 +7,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import User from './users/entities/user.entity';
 import { APP_PIPE } from '@nestjs/core';
+import { CategoriesModule } from './categories/categories.module';
+import { ProductsModule } from './products/products.module';
+import { Product } from './products/entities/product.entity';
+import { Category } from './categories/entities/category.entity';
 
 @Module({
   imports: [
@@ -23,10 +27,12 @@ import { APP_PIPE } from '@nestjs/core';
           type: 'sqlite',
           database: config.get<string>('DB_NAME'),
           synchronize: true,
-          entities: [User],
+          entities: [User, Product, Category],
         };
       },
     }),
+    CategoriesModule,
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [
