@@ -2,6 +2,14 @@
 /dist
 /node_modules
 
+# DB
+*.sqlite
+
+# Environments 
+.env.dev
+.env.test
+.env.prod
+
 # Logs
 logs
 *.log
