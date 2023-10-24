@@ -6,15 +6,15 @@ import {
   Param,
   Post,
 } from '@nestjs/common';
-import CategoryDTO from 'src/categories/dtos/category.dtos';
-import { CategoriesService } from 'src/categories/services/categories/categories.service';
+import CategoryDTO from 'src/products/dtos/category.dtos';
+import { ProductsService } from 'src/products/services/products/products.service';
 
 @Controller('api/v1/categories')
 export class CategoriesController {
-  constructor(private categoryService: CategoriesService) {}
+  constructor(private categoryService: ProductsService) {}
   @Post()
   async createCategory(@Body() body: CategoryDTO) {
-    const category = await this.categoryService.createCategory({
+    const category = await this.categoryService.createCat({
       name: body.name,
     });
 
@@ -26,12 +26,12 @@ export class CategoriesController {
 
   @Get()
   listCategories() {
-    return this.categoryService.findAll();
+    return this.categoryService.findAllCat();
   }
 
   @Get('/:id')
   getCategory(@Param('id') id: string) {
-    const category = this.categoryService.findOne(id);
+    const category = this.categoryService.findOneCat(id);
 
     if (!category) {
       throw new BadRequestException('Category not found');

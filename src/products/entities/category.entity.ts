@@ -26,6 +26,9 @@ export class Category {
   @CreateDateColumn()
   modified_at: Date;
 
-  @OneToMany(() => Product, (product) => product.category)
+  @OneToMany(() => Product, (products) => products.category)
   products: Product[];
+
+  // @OneToMany(type=>Products, products=>products.category)
+  //   products: Products[];
 }

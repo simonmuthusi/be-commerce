@@ -1,11 +1,10 @@
-import { Category } from 'src/categories/entities/category.entity';
+import { Category } from 'src/products/entities/category.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   Generated,
   ManyToOne,
-  OneToMany,
 } from 'typeorm';
 
 const DEFAULT_IMAGE_URL =
@@ -47,4 +46,7 @@ export class Product {
 
   @ManyToOne(() => Category, (category) => category.products)
   category: Category;
+
+  // @ManyToOne(type=>Category, category=>category.products, {cascade: ["insert", "update"]})  // change ownership if needed -> old retained till now
+  //   category: Category;
 }

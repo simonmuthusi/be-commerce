@@ -14,12 +14,7 @@ export class ProductsController {
   constructor(private productService: ProductsService) {}
   @Post()
   async createCategory(@Body() body: ProductDTO) {
-    const product = await this.productService.create({
-      name: body.name,
-      price: body.price,
-      status: body.status,
-      category_id: body.category_id,
-    });
+    const product = await this.productService.createProd(body);
 
     if (!product) {
       throw new BadRequestException('Error in creating product');
@@ -29,12 +24,12 @@ export class ProductsController {
 
   @Get()
   listCategories() {
-    return this.productService.findAll();
+    return this.productService.findAllProd();
   }
 
   @Get('/:id')
   getCategory(@Param('id') id: string) {
-    const category = this.productService.findOne(id);
+    const category = this.productService.findOneProd(id);
 
     if (!category) {
       throw new BadRequestException('Product not found');

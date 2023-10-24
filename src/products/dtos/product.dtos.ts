@@ -11,7 +11,13 @@ class ProductDTO {
   status: string;
 
   @IsString()
-  category_id: string;
+  url: string;
+
+  @IsString()
+  description: string;
+
+  @IsString()
+  category: string;
 }
 
 export default ProductDTO;
