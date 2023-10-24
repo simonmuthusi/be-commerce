@@ -1,4 +1,11 @@
-import { BadRequestException, Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+} from '@nestjs/common';
 import ProductDTO from 'src/products/dtos/product.dtos';
 import { ProductsService } from 'src/products/services/products/products.service';
 
@@ -13,7 +20,7 @@ export class ProductsController {
       status: body.status,
       category_id: body.category_id,
     });
-    
+
     if (!product) {
       throw new BadRequestException('Error in creating product');
     }
@@ -27,7 +34,7 @@ export class ProductsController {
 
   @Get('/:id')
   getCategory(@Param('id') id: string) {
-    const category = this.productService.findOne(parseInt(id));
+    const category = this.productService.findOne(id);
 
     if (!category) {
       throw new BadRequestException('Product not found');
@@ -35,4 +42,3 @@ export class ProductsController {
     return category;
   }
 }
-

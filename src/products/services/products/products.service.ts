@@ -17,7 +17,7 @@ export class ProductsService {
     return this.repo.find();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     const item = this.repo.findOneBy({ id });
 
     if (!item) {

@@ -31,7 +31,7 @@ export class CategoriesController {
 
   @Get('/:id')
   getCategory(@Param('id') id: string) {
-    const category = this.categoryService.findOne(parseInt(id));
+    const category = this.categoryService.findOne(id);
 
     if (!category) {
       throw new BadRequestException('Category not found');

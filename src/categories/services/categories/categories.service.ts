@@ -17,7 +17,7 @@ export class CategoriesService {
     return this.repo.find();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     const category = this.repo.findOneBy({ id });
 
     if (!category) {
