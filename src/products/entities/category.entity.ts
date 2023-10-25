@@ -28,7 +28,4 @@ export class Category {
 
   @OneToMany(() => Product, (products) => products.category)
   products: Product[];
-
-  // @OneToMany(type=>Products, products=>products.category)
-  //   products: Products[];
 }

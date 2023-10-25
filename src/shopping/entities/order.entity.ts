@@ -1,6 +1,13 @@
 import { Product } from 'src/products/entities/product.entity';
 import User from 'src/users/entities/user.entity';
-import { Column, Entity, Generated, JoinColumn, OneToOne } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  Generated,
+  JoinColumn,
+  OneToOne,
+} from 'typeorm';
 
 @Entity()
 export class Order {
@@ -23,4 +30,10 @@ export class Order {
 
   @Column()
   status: number;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @CreateDateColumn()
+  modified_at: Date;
 }
