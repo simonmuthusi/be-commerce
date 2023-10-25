@@ -12,7 +12,7 @@ import { ProductsModule } from './products/products.module';
 import { Product } from './products/entities/product.entity';
 import { Category } from './products/entities/category.entity';
 import { ShoppingModule } from './shopping/shopping.module';
-import { Order } from './shopping/entities/order.entity';
+import { ShoppingOrder } from './shopping/entities/shopping-order.entity';
 import { ShoppingCart } from './shopping/entities/shopping-cart.entity';
 
 const cookieSession = require('cookie-session');
@@ -21,6 +21,7 @@ const cookieSession = require('cookie-session');
   imports: [
     UsersModule,
     ReportsModule,
+    ShoppingModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
@@ -32,12 +33,11 @@ const cookieSession = require('cookie-session');
           type: 'sqlite',
           database: config.get<string>('DB_NAME'),
           synchronize: true,
-          entities: [User, Product, Category, ShoppingCart, Order],
+          entities: [User, Product, Category, ShoppingCart, ShoppingOrder],
         };
       },
     }),
     ProductsModule,
-    ShoppingModule,
   ],
   controllers: [AppController],
   providers: [

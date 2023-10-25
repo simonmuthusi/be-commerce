@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Order {
+export class ShoppingOrder {
   @Column({
     primary: true,
   })

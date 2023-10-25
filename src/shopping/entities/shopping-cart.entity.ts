@@ -5,8 +5,7 @@ import {
   CreateDateColumn,
   Entity,
   Generated,
-  JoinColumn,
-  OneToOne,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
@@ -17,12 +16,10 @@ export class ShoppingCart {
   @Generated('uuid')
   id: string;
 
-  @OneToOne(() => Product)
-  @JoinColumn()
+  @ManyToOne(() => Product)
   product: Product;
 
-  @OneToOne(() => User)
-  @JoinColumn()
+  @ManyToOne(() => User)
   user: User;
 
   @Column()
