@@ -28,7 +28,9 @@ export class Order {
   @Column()
   quantity: number;
 
-  @Column()
+  @Column({
+    default: 1,
+  })
   status: number;
 
   @CreateDateColumn()

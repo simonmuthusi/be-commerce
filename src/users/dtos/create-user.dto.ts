@@ -15,6 +15,9 @@ class CreateUserDTO {
 
   @IsBoolean()
   is_admin: boolean;
+
+  @IsString()
+  password: string;
 }
 
 export default CreateUserDTO;
