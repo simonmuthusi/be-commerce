@@ -1,4 +1,5 @@
-import { Module, ValidationPipe } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-var-requires */
+import { MiddlewareConsumer, Module, ValidationPipe } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
@@ -13,6 +14,8 @@ import { Category } from './products/entities/category.entity';
 import { ShoppingModule } from './shopping/shopping.module';
 import { Order } from './shopping/entities/order.entity';
 import { ShoppingCart } from './shopping/entities/shopping-cart.entity';
+
+const cookieSession = require('cookie-session');
 
 @Module({
   imports: [
@@ -47,4 +50,14 @@ import { ShoppingCart } from './shopping/entities/shopping-cart.entity';
     },
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(
+        cookieSession({
+          keys: ['cookie-string-1j12b3h1bj234b234jk'],
+        }),
+      )
+      .forRoutes('*');
+  }
+}
