@@ -39,8 +39,8 @@ Reach out through [support](https://joinsimon.life) for any queries
 
 ## Stay in touch
 
-- Author - [Simon Muthusi](https://joinsimon.life)
-- LinkedIn - [https://www.linkedin.com/in/simonmuthusi/](https://www.linkedin.com/in/simonmuthusi/)
+- [Simon Muthusi Blog](https://simon.co.ke)
+- [LinkedIn](https://www.linkedin.com/in/simonmuthusi/)
 
 ## License
 
